@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_set.dart';
 import 'reusable_card.dart';
+import 'constants.dart';
 
-const bottomContainerHeight = 80.0;
-const Color activeBgColor = Color(0xff1d1e33);
-const Color inactiveBgColor = Color(0xFF111328);
-const Color btnColor = Color(0xFFEB1555);
 enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
@@ -37,8 +34,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: selectedGender == Gender.male
-                        ? activeBgColor
-                        : inactiveBgColor,
+                        ? kActiveBgColor
+                        : kInactiveBgColor,
                     cardChild: IconSet(
                       icon: FontAwesomeIcons.mars,
                       label: 'MALE',
@@ -55,8 +52,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: selectedGender == Gender.female
-                        ? activeBgColor
-                        : inactiveBgColor,
+                        ? kActiveBgColor
+                        : kInactiveBgColor,
                     cardChild: IconSet(
                       icon: FontAwesomeIcons.venus,
                       label: 'FEMALE',
@@ -68,7 +65,7 @@ class _InputPageState extends State<InputPage> {
           ),
           Expanded(
             child: ReusableCard(
-              color: activeBgColor,
+              color: kActiveBgColor,
             ),
           ),
           Expanded(
@@ -76,12 +73,12 @@ class _InputPageState extends State<InputPage> {
               children: <Widget>[
                 Expanded(
                   child: ReusableCard(
-                    color: activeBgColor,
+                    color: kActiveBgColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: activeBgColor,
+                    color: kActiveBgColor,
                   ),
                 ),
               ],
@@ -91,9 +88,9 @@ class _InputPageState extends State<InputPage> {
             height: 10.0,
           ),
           Container(
-            color: btnColor,
+            color: kBottomBtnColor,
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           ),
         ],
       ),
