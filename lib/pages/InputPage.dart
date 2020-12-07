@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import '../widgetBuilder/darkContainer.dart';
 
+const bottomContainerHeight = 80.0;
+const activeCardColor = Color(0xFF1D1E33);
+const bottomContainerColor = Color(0xFFEB1555);
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
@@ -18,8 +22,8 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                new DarkContainer(color: Color(0xFF1D1E33)),
-                new DarkContainer(color: Color(0xFF1D1E33))
+                new DarkContainer(color: activeCardColor),
+                new DarkContainer(color: activeCardColor)
               ],
             ),
           ),
@@ -27,7 +31,7 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                new DarkContainer(color: Color(0xFF1D1E33))
+                new DarkContainer(color: activeCardColor)
                 // change the DarkContainer width and height to have percentage sizes
                 // Solve this instead of using fixed sizes I had to use Expanded widgets
               ],
@@ -36,16 +40,19 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                new DarkContainer(color: Color(0xFF1D1E33)),
-                new DarkContainer(color: Color(0xFF1D1E33))
+                new DarkContainer(color: activeCardColor),
+                new DarkContainer(color: activeCardColor)
               ],
             ),
           ),
+          Container(
+              width: double.infinity,
+              height: bottomContainerHeight,
+              margin: EdgeInsets.only(top: 5.0),
+              decoration: BoxDecoration(
+                color: bottomContainerColor,
+              )),
         ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
       ),
     );
   }
