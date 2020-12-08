@@ -5,6 +5,7 @@ import 'package:bmi_calculator/widgetBuilder/fontAwesomeWidget.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
@@ -13,6 +14,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,37 +28,51 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                    child: new DarkContainer(
-                  color: activeCardColor,
-                  cardChild: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FontAwesomeWidget(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        icon: FontAwesomeIcons.mars,
-                        size: 60.0,
-                        textColor: Color(0xFF8D8E98),
-                        textSize: 18.0,
-                        iconText: 'MALE',
-                      ),
-                    ],
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender(1);
+                    });
+                  },
+                  child: new DarkContainer(
+                    color: maleCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FontAwesomeWidget(
+                          margin: EdgeInsets.only(bottom: 8.0),
+                          icon: FontAwesomeIcons.mars,
+                          size: 60.0,
+                          textColor: Color(0xFF8D8E98),
+                          textSize: 18.0,
+                          iconText: 'MALE',
+                        ),
+                      ],
+                    ),
                   ),
                 )),
                 Expanded(
-                    child: new DarkContainer(
-                  color: activeCardColor,
-                  cardChild: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FontAwesomeWidget(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        icon: FontAwesomeIcons.venus,
-                        size: 60.0,
-                        iconText: 'FEMALE',
-                        textColor: Color(0xFF8D8E98),
-                        textSize: 18.0,
-                      ),
-                    ],
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender(2);
+                    });
+                  },
+                  child: new DarkContainer(
+                    color: femaleCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FontAwesomeWidget(
+                          margin: EdgeInsets.only(bottom: 8.0),
+                          icon: FontAwesomeIcons.venus,
+                          size: 60.0,
+                          iconText: 'FEMALE',
+                          textColor: Color(0xFF8D8E98),
+                          textSize: 18.0,
+                        ),
+                      ],
+                    ),
                   ),
                 ))
               ],
@@ -70,7 +87,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       children: [],
                     ),
-                    color: activeCardColor,
+                    color: inactiveCardColor,
                   ),
                 )
                 // change the DarkContainer width and height to have percentage sizes
@@ -83,14 +100,14 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                     child: new DarkContainer(
-                  color: activeCardColor,
+                  color: inactiveCardColor,
                   cardChild: Column(
                     children: [],
                   ),
                 )),
                 Expanded(
                     child: new DarkContainer(
-                  color: activeCardColor,
+                  color: inactiveCardColor,
                   cardChild: Column(
                     children: [],
                   ),
@@ -108,5 +125,15 @@ class _InputPageState extends State<InputPage> {
         ],
       ),
     );
+  }
+
+  selectedGender(int gender) {
+    if (gender == 1) {
+      maleCardColor = activeCardColor;
+      femaleCardColor = inactiveCardColor;
+    } else {
+      femaleCardColor = activeCardColor;
+      maleCardColor = inactiveCardColor;
+    }
   }
 }

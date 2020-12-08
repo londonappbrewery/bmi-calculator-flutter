@@ -23,7 +23,6 @@ class FontAwesomeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -33,6 +32,7 @@ class FontAwesomeWidget extends StatelessWidget {
               // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
               icon,
               size: size,
+              color: color,
             )),
         Text(
           iconText,
