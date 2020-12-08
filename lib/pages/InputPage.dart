@@ -32,7 +32,7 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       FontAwesomeWidget(
                         margin: EdgeInsets.only(bottom: 8.0),
-                        icon: FaIcon(FontAwesomeIcons.mars),
+                        icon: FontAwesomeIcons.mars,
                         size: 60.0,
                         textColor: Color(0xFF8D8E98),
                         textSize: 18.0,
@@ -49,7 +49,7 @@ class _InputPageState extends State<InputPage> {
                     children: [
                       FontAwesomeWidget(
                         margin: EdgeInsets.only(bottom: 8.0),
-                        icon: FaIcon(FontAwesomeIcons.venus),
+                        icon: FontAwesomeIcons.venus,
                         size: 60.0,
                         iconText: 'FEMALE',
                         textColor: Color(0xFF8D8E98),

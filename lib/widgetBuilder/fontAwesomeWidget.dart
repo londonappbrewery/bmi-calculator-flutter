@@ -28,15 +28,12 @@ class FontAwesomeWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          margin: margin,
-          child: IconButton(
+            margin: margin,
+            child: Icon(
               // Use the FaIcon Widget + FontAwesomeIcons class for the IconData
-              icon: icon,
-              iconSize: size,
-              onPressed: () {
-                callback();
-              }),
-        ),
+              icon,
+              size: size,
+            )),
         Text(
           iconText,
           style: TextStyle(color: textColor, fontSize: textSize),
