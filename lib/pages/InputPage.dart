@@ -34,11 +34,10 @@ class _InputPageState extends State<InputPage> {
                         margin: EdgeInsets.only(bottom: 8.0),
                         icon: FaIcon(FontAwesomeIcons.mars),
                         size: 60.0,
+                        textColor: Color(0xFF8D8E98),
+                        textSize: 18.0,
+                        iconText: 'MALE',
                       ),
-                      Text(
-                        'MALE',
-                        style: TextStyle(fontSize: 15.0),
-                      )
                     ],
                   ),
                 )),
@@ -52,11 +51,10 @@ class _InputPageState extends State<InputPage> {
                         margin: EdgeInsets.only(bottom: 8.0),
                         icon: FaIcon(FontAwesomeIcons.venus),
                         size: 60.0,
+                        iconText: 'FEMALE',
+                        textColor: Color(0xFF8D8E98),
+                        textSize: 18.0,
                       ),
-                      Text(
-                        'FEMALE',
-                        style: TextStyle(fontSize: 15.0),
-                      )
                     ],
                   ),
                 ))
