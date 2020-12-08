@@ -1,5 +1,7 @@
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import '../widgetBuilder/darkContainer.dart';
+import 'package:bmi_calculator/widgetBuilder/fontAwesomeWidget.dart';
 
 const bottomContainerHeight = 80.0;
 const activeCardColor = Color(0xFF1D1E33);
@@ -22,8 +24,42 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: new DarkContainer(color: activeCardColor)),
-                Expanded(child: new DarkContainer(color: activeCardColor))
+                Expanded(
+                    child: new DarkContainer(
+                  color: activeCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FontAwesomeWidget(
+                        margin: EdgeInsets.only(bottom: 8.0),
+                        icon: FaIcon(FontAwesomeIcons.mars),
+                        size: 60.0,
+                      ),
+                      Text(
+                        'MALE',
+                        style: TextStyle(fontSize: 15.0),
+                      )
+                    ],
+                  ),
+                )),
+                Expanded(
+                    child: new DarkContainer(
+                  color: activeCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FontAwesomeWidget(
+                        margin: EdgeInsets.only(bottom: 8.0),
+                        icon: FaIcon(FontAwesomeIcons.venus),
+                        size: 60.0,
+                      ),
+                      Text(
+                        'FEMALE',
+                        style: TextStyle(fontSize: 15.0),
+                      )
+                    ],
+                  ),
+                ))
               ],
             ),
           ),
@@ -33,6 +69,9 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: new DarkContainer(
+                    cardChild: Column(
+                      children: [],
+                    ),
                     color: activeCardColor,
                   ),
                 )
@@ -44,8 +83,20 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: new DarkContainer(color: activeCardColor)),
-                Expanded(child: new DarkContainer(color: activeCardColor))
+                Expanded(
+                    child: new DarkContainer(
+                  color: activeCardColor,
+                  cardChild: Column(
+                    children: [],
+                  ),
+                )),
+                Expanded(
+                    child: new DarkContainer(
+                  color: activeCardColor,
+                  cardChild: Column(
+                    children: [],
+                  ),
+                ))
               ],
             ),
           ),
