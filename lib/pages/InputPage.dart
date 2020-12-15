@@ -9,6 +9,7 @@ const activeCardColor = Color(0xFF111328);
 const bottomContainerColor = Color(0xFFEB1555);
 
 enum Gender { male, female }
+Gender selectedGender;
 
 class InputPage extends StatefulWidget {
   @override
@@ -33,11 +34,13 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedGender(Gender.male);
+                      selectedGender = Gender.male;
                     });
                   },
                   child: new DarkContainer(
-                    color: maleCardColor,
+                    color: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -57,11 +60,13 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedGender(Gender.female);
+                      selectedGender = Gender.female;
                     });
                   },
                   child: new DarkContainer(
-                    color: femaleCardColor,
+                    color: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -129,13 +134,13 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  selectedGender(Gender gender) {
-    if (gender == Gender.male) {
-      maleCardColor = activeCardColor;
-      femaleCardColor = inactiveCardColor;
-    } else {
-      femaleCardColor = activeCardColor;
-      maleCardColor = inactiveCardColor;
-    }
-  }
+  // selectedGender(Gender gender) {
+  //   if (gender == Gender.male) {
+  //     maleCardColor = activeCardColor;
+  //     femaleCardColor = inactiveCardColor;
+  //   } else {
+  //     femaleCardColor = activeCardColor;
+  //     maleCardColor = inactiveCardColor;
+  //   }
+  // }
 }
