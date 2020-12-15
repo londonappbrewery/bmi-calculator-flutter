@@ -4,9 +4,11 @@ import '../widgetBuilder/darkContainer.dart';
 import 'package:bmi_calculator/widgetBuilder/fontAwesomeWidget.dart';
 
 const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
+const inactiveCardColor = Color(0xFF1D1E33);
+const activeCardColor = Color(0xFF111328);
 const bottomContainerColor = Color(0xFFEB1555);
+
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -31,7 +33,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedGender(1);
+                      selectedGender(Gender.male);
                     });
                   },
                   child: new DarkContainer(
@@ -55,7 +57,7 @@ class _InputPageState extends State<InputPage> {
                     child: GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedGender(2);
+                      selectedGender(Gender.female);
                     });
                   },
                   child: new DarkContainer(
@@ -127,8 +129,8 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  selectedGender(int gender) {
-    if (gender == 1) {
+  selectedGender(Gender gender) {
+    if (gender == Gender.male) {
       maleCardColor = activeCardColor;
       femaleCardColor = inactiveCardColor;
     } else {
