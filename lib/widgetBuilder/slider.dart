@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
-enum Gender { male, female }
+class CustomSlider extends StatelessWidget {
+  CustomSlider({this.values});
+  final List values;
 
-sliderBuilder() {}
+  @override
+  Widget build(BuildContext context) {
+    return Slider(value: this.values[1], onChanged: null);
+    // implement this
+  }
+}
