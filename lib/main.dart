@@ -12,8 +12,9 @@ class BMICalculator extends StatelessWidget {
           scaffoldBackgroundColor: Color(0xFF0A0E21),
           sliderTheme: SliderThemeData(
               inactiveTickMarkColor: Colors.pink[600],
+              overlayColor: Colors.pinkAccent[600],
               valueIndicatorColor: Colors.pinkAccent,
-              inactiveTrackColor: Colors.pink[200],
+              inactiveTrackColor: Colors.grey[600],
               activeTrackColor: Colors.pinkAccent,
               thumbColor: Colors.pink[600]),
           indicatorColor: Colors.pinkAccent),
