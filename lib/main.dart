@@ -13,7 +13,10 @@ class BMICalculator extends StatelessWidget {
           sliderTheme: SliderThemeData(
               inactiveTickMarkColor: Colors.pink[600],
               valueIndicatorColor: Colors.pinkAccent,
-              thumbColor: Color(0xFF111328))),
+              inactiveTrackColor: Colors.pink[200],
+              activeTrackColor: Colors.pinkAccent,
+              thumbColor: Colors.pink[600]),
+          indicatorColor: Colors.pinkAccent),
       home: SafeArea(child: InputPage()),
     );
   }
