@@ -31,55 +31,51 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () {
+                    child: new DarkContainer(
+                  onPress: () {
                     setState(() {
                       selectedGender = Gender.male;
                     });
                   },
-                  child: new DarkContainer(
-                    color: selectedGender == Gender.male
-                        ? inactiveCardColor
-                        : activeCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FontAwesomeWidget(
-                          margin: EdgeInsets.only(bottom: 8.0),
-                          icon: FontAwesomeIcons.mars,
-                          size: 60.0,
-                          textColor: Color(0xFF8D8E98),
-                          textSize: 18.0,
-                          iconText: 'MALE',
-                        ),
-                      ],
-                    ),
+                  color: selectedGender == Gender.male
+                      ? inactiveCardColor
+                      : activeCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FontAwesomeWidget(
+                        margin: EdgeInsets.only(bottom: 8.0),
+                        icon: FontAwesomeIcons.mars,
+                        size: 60.0,
+                        textColor: Color(0xFF8D8E98),
+                        textSize: 18.0,
+                        iconText: 'MALE',
+                      ),
+                    ],
                   ),
                 )),
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () {
+                    child: new DarkContainer(
+                  onPress: () {
                     setState(() {
                       selectedGender = Gender.female;
                     });
                   },
-                  child: new DarkContainer(
-                    color: selectedGender == Gender.female
-                        ? inactiveCardColor
-                        : activeCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FontAwesomeWidget(
-                          margin: EdgeInsets.only(bottom: 8.0),
-                          icon: FontAwesomeIcons.venus,
-                          size: 60.0,
-                          iconText: 'FEMALE',
-                          textColor: Color(0xFF8D8E98),
-                          textSize: 18.0,
-                        ),
-                      ],
-                    ),
+                  color: selectedGender == Gender.female
+                      ? inactiveCardColor
+                      : activeCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FontAwesomeWidget(
+                        margin: EdgeInsets.only(bottom: 8.0),
+                        icon: FontAwesomeIcons.venus,
+                        size: 60.0,
+                        iconText: 'FEMALE',
+                        textColor: Color(0xFF8D8E98),
+                        textSize: 18.0,
+                      ),
+                    ],
                   ),
                 ))
               ],
