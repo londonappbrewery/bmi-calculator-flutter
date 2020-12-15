@@ -17,8 +17,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
+  Color maleCardColor = activeCardColor;
+  Color femaleCardColor = activeCardColor;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +39,8 @@ class _InputPageState extends State<InputPage> {
                   },
                   child: new DarkContainer(
                     color: selectedGender == Gender.male
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? inactiveCardColor
+                        : activeCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -65,8 +65,8 @@ class _InputPageState extends State<InputPage> {
                   },
                   child: new DarkContainer(
                     color: selectedGender == Gender.female
-                        ? activeCardColor
-                        : inactiveCardColor,
+                        ? inactiveCardColor
+                        : activeCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
