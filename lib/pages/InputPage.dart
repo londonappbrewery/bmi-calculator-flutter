@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import '../widgetBuilder/darkContainer.dart';
 import 'package:bmi_calculator/widgetBuilder/fontAwesomeWidget.dart';
 import '../widgetBuilder/slider.dart';
+import '../constants.dart';
+import '../widgetBuilder/threelevelsWidget.dart';
 
-const bottomContainerHeight = 80.0;
-const inactiveCardColor = Color(0xFF1D1E33);
-const activeCardColor = Color(0xFF111328);
-const bottomContainerColor = Color(0xFFEB1555);
-double _sliderCurrentValue = 10.0;
-
+double _sliderCurrentValue = 130.0;
+double _weightCurrentValue = 50.0;
+double _ageCurrentValue = 22.0;
 enum Gender { male, female }
 Gender selectedGender;
 
@@ -94,23 +93,25 @@ class _InputPageState extends State<InputPage> {
                         children: [
                           Text(
                             'HEIGHT',
-                            style: TextStyle(
-                              color: Color(0xFF8D8E98),
-                              fontSize: 18.0,
-                            ),
+                            style: LabelTextStyle,
                           ),
-                          Text(
-                            _sliderCurrentValue.round().toString(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 35.0,
-                                fontWeight: FontWeight.w500),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(_sliderCurrentValue.round().toString(),
+                                  style: NumberTextStyle),
+                              Text(
+                                'cm',
+                                style: LabelTextStyle,
+                              ),
+                            ],
                           ),
                           new CustomSlider(
                             currentValue: _sliderCurrentValue,
-                            minValue: 0.0,
-                            maxValue: 100.0,
-                            numDivisions: 10,
+                            minValue: 120.0,
+                            maxValue: 220.0,
                             onPress: (double value) {
                               setState(() {
                                 _sliderCurrentValue = value;
@@ -132,9 +133,11 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: new DarkContainer(
                   color: inactiveCardColor,
-                  cardChild: Column(
-                    children: [],
-                  ),
+                  cardChild: new ThreeLevelWidget(
+                      // had to end up building the countWidget
+                      labelText: 'WEIGHT',
+                      numberText: _weightCurrentValue.round().toString(),
+                      customChild: null),
                 )),
                 Expanded(
                     child: new DarkContainer(
