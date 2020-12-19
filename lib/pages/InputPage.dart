@@ -5,6 +5,7 @@ import 'package:bmi_calculator/widgetBuilder/fontAwesomeWidget.dart';
 import '../widgetBuilder/slider.dart';
 import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
+import '../widgetBuilder/countWidget.dart';
 
 double _sliderCurrentValue = 130.0;
 double _weightCurrentValue = 50.0;
@@ -137,13 +138,17 @@ class _InputPageState extends State<InputPage> {
                       // had to end up building the countWidget
                       labelText: 'WEIGHT',
                       numberText: _weightCurrentValue.round().toString(),
-                      customChild: null),
+                      customChild: new CountWidget(
+                          firstCallBack: () {}, secondCallBack: () {})),
                 )),
                 Expanded(
                     child: new DarkContainer(
                   color: inactiveCardColor,
-                  cardChild: Column(
-                    children: [],
+                  cardChild: new ThreeLevelWidget(
+                    labelText: 'AGE',
+                    numberText: _ageCurrentValue.round().toString(),
+                    customChild: new CountWidget(
+                        firstCallBack: () {}, secondCallBack: () {}),
                   ),
                 ))
               ],
