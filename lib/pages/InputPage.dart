@@ -2,11 +2,16 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import '../widgetBuilder/darkContainer.dart';
 import 'package:bmi_calculator/widgetBuilder/fontAwesomeWidget.dart';
+import '../widgetBuilder/slider.dart';
+import '../constants.dart';
+import '../widgetBuilder/threelevelsWidget.dart';
+import '../widgetBuilder/countWidget.dart';
 
-const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const bottomContainerColor = Color(0xFFEB1555);
+double _sliderCurrentValue = 130.0;
+double _weightCurrentValue = 50.0;
+double _ageCurrentValue = 22.0;
+enum Gender { male, female }
+Gender selectedGender;
 
 class InputPage extends StatefulWidget {
   @override
@@ -14,8 +19,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColor = inactiveCardColor;
-  Color femaleCardColor = inactiveCardColor;
+  Color maleCardColor = activeCardColor;
+  Color femaleCardColor = activeCardColor;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,51 +33,51 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () {
+                    child: new DarkContainer(
+                  onPress: () {
                     setState(() {
-                      selectedGender(1);
+                      selectedGender = Gender.male;
                     });
                   },
-                  child: new DarkContainer(
-                    color: maleCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FontAwesomeWidget(
-                          margin: EdgeInsets.only(bottom: 8.0),
-                          icon: FontAwesomeIcons.mars,
-                          size: 60.0,
-                          textColor: Color(0xFF8D8E98),
-                          textSize: 18.0,
-                          iconText: 'MALE',
-                        ),
-                      ],
-                    ),
+                  color: selectedGender == Gender.male
+                      ? inactiveCardColor
+                      : activeCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FontAwesomeWidget(
+                        margin: EdgeInsets.only(bottom: 8.0),
+                        icon: FontAwesomeIcons.mars,
+                        size: 60.0,
+                        textColor: Color(0xFF8D8E98),
+                        textSize: 18.0,
+                        iconText: 'MALE',
+                      ),
+                    ],
                   ),
                 )),
                 Expanded(
-                    child: GestureDetector(
-                  onTap: () {
+                    child: new DarkContainer(
+                  onPress: () {
                     setState(() {
-                      selectedGender(2);
+                      selectedGender = Gender.female;
                     });
                   },
-                  child: new DarkContainer(
-                    color: femaleCardColor,
-                    cardChild: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FontAwesomeWidget(
-                          margin: EdgeInsets.only(bottom: 8.0),
-                          icon: FontAwesomeIcons.venus,
-                          size: 60.0,
-                          iconText: 'FEMALE',
-                          textColor: Color(0xFF8D8E98),
-                          textSize: 18.0,
-                        ),
-                      ],
-                    ),
+                  color: selectedGender == Gender.female
+                      ? inactiveCardColor
+                      : activeCardColor,
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FontAwesomeWidget(
+                        margin: EdgeInsets.only(bottom: 8.0),
+                        icon: FontAwesomeIcons.venus,
+                        size: 60.0,
+                        iconText: 'FEMALE',
+                        textColor: Color(0xFF8D8E98),
+                        textSize: 18.0,
+                      ),
+                    ],
                   ),
                 ))
               ],
@@ -85,8 +90,36 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: new DarkContainer(
                     cardChild: Column(
-                      children: [],
-                    ),
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'HEIGHT',
+                            style: LabelTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(_sliderCurrentValue.round().toString(),
+                                  style: NumberTextStyle),
+                              Text(
+                                'cm',
+                                style: LabelTextStyle,
+                              ),
+                            ],
+                          ),
+                          new CustomSlider(
+                            currentValue: _sliderCurrentValue,
+                            minValue: 120.0,
+                            maxValue: 220.0,
+                            onPress: (double value) {
+                              setState(() {
+                                _sliderCurrentValue = value;
+                              });
+                            },
+                          )
+                        ]),
                     color: inactiveCardColor,
                   ),
                 )
@@ -101,15 +134,44 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                     child: new DarkContainer(
                   color: inactiveCardColor,
-                  cardChild: Column(
-                    children: [],
-                  ),
+                  cardChild: new ThreeLevelWidget(
+                      // had to end up building the countWidget
+                      labelText: 'WEIGHT',
+                      numberText: _weightCurrentValue.round().toString(),
+                      customChild: new CountWidget(firstCallBack: () {
+                        if (_weightCurrentValue < 200) {
+                          print(_weightCurrentValue);
+                          setState(() {
+                            _weightCurrentValue++;
+                          });
+                        }
+                      }, secondCallBack: () {
+                        if (_weightCurrentValue > 0) {
+                          setState(() {
+                            _weightCurrentValue--;
+                          });
+                        }
+                      })),
                 )),
                 Expanded(
                     child: new DarkContainer(
                   color: inactiveCardColor,
-                  cardChild: Column(
-                    children: [],
+                  cardChild: new ThreeLevelWidget(
+                    labelText: 'AGE',
+                    numberText: _ageCurrentValue.round().toString(),
+                    customChild: new CountWidget(firstCallBack: () {
+                      if (_ageCurrentValue < 100) {
+                        setState(() {
+                          _ageCurrentValue++;
+                        });
+                      }
+                    }, secondCallBack: () {
+                      if (_ageCurrentValue > 0) {
+                        setState(() {
+                          _ageCurrentValue--;
+                        });
+                      }
+                    }),
                   ),
                 ))
               ],
@@ -127,13 +189,13 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  selectedGender(int gender) {
-    if (gender == 1) {
-      maleCardColor = activeCardColor;
-      femaleCardColor = inactiveCardColor;
-    } else {
-      femaleCardColor = activeCardColor;
-      maleCardColor = inactiveCardColor;
-    }
-  }
+  // selectedGender(Gender gender) {
+  //   if (gender == Gender.male) {
+  //     maleCardColor = activeCardColor;
+  //     femaleCardColor = inactiveCardColor;
+  //   } else {
+  //     femaleCardColor = activeCardColor;
+  //     maleCardColor = inactiveCardColor;
+  //   }
+  // }
 }
