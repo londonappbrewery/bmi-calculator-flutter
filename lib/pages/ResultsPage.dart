@@ -7,8 +7,10 @@ class ResultsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Results"),
       ),
-      body: Center(
-        child: Text("Holi en resultados"),
+      body: SafeArea(
+        child: Center(
+          child: Text("Holi en resultados"),
+        ),
       ),
     );
   }
