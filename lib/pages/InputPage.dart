@@ -6,6 +6,7 @@ import '../widgetBuilder/slider.dart';
 import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
 import '../widgetBuilder/countWidget.dart';
+import 'ResultsPage.dart';
 
 double _sliderCurrentValue = 130.0;
 double _weightCurrentValue = 50.0;
@@ -178,6 +179,14 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
+              child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ResultsPage();
+                    }));
+                  },
+                  child: Center(child: Text("Results"))),
               width: double.infinity,
               height: bottomContainerHeight,
               margin: EdgeInsets.only(top: 5.0),
