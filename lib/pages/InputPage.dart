@@ -138,8 +138,20 @@ class _InputPageState extends State<InputPage> {
                       // had to end up building the countWidget
                       labelText: 'WEIGHT',
                       numberText: _weightCurrentValue.round().toString(),
-                      customChild: new CountWidget(
-                          firstCallBack: () {}, secondCallBack: () {})),
+                      customChild: new CountWidget(firstCallBack: () {
+                        if (_weightCurrentValue < 200) {
+                          print(_weightCurrentValue);
+                          setState(() {
+                            _weightCurrentValue++;
+                          });
+                        }
+                      }, secondCallBack: () {
+                        if (_weightCurrentValue > 0) {
+                          setState(() {
+                            _weightCurrentValue--;
+                          });
+                        }
+                      })),
                 )),
                 Expanded(
                     child: new DarkContainer(
@@ -147,8 +159,19 @@ class _InputPageState extends State<InputPage> {
                   cardChild: new ThreeLevelWidget(
                     labelText: 'AGE',
                     numberText: _ageCurrentValue.round().toString(),
-                    customChild: new CountWidget(
-                        firstCallBack: () {}, secondCallBack: () {}),
+                    customChild: new CountWidget(firstCallBack: () {
+                      if (_ageCurrentValue < 100) {
+                        setState(() {
+                          _ageCurrentValue++;
+                        });
+                      }
+                    }, secondCallBack: () {
+                      if (_ageCurrentValue > 0) {
+                        setState(() {
+                          _ageCurrentValue--;
+                        });
+                      }
+                    }),
                   ),
                 ))
               ],
