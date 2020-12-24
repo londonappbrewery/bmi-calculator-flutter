@@ -184,7 +184,11 @@ class _InputPageState extends State<InputPage> {
                     onTap: () {
                       Navigator.pushNamed(context, '/results');
                     },
-                    child: Center(child: Text("Results"))),
+                    child: Center(
+                        child: Text(
+                      "CALCULATE",
+                      style: LargeButtonStyle,
+                    ))),
                 width: double.infinity,
                 height: bottomContainerHeight,
                 margin: EdgeInsets.only(top: 5.0),

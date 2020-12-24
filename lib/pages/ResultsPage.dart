@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../widgetBuilder/darkContainer.dart';
+import '../widgetBuilder/threelevelsWidget.dart';
+
 
 class ResultsPage extends StatelessWidget {
   @override
@@ -9,7 +12,7 @@ class ResultsPage extends StatelessWidget {
       ),
       body: SafeArea(
         child: Center(
-          child: Text("Holi en resultados"),
+          child: new DarkContainer(color: null)
         ),
       ),
     );
