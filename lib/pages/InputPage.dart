@@ -178,7 +178,10 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
             Container(
-                child: BottomButton(title: "CALCULATE"),
+                child: BottomButton(
+                  title: "CALCULATE",
+                  route: "results",
+                ),
                 width: double.infinity,
                 height: bottomContainerHeight,
                 margin: EdgeInsets.only(top: 5.0),
