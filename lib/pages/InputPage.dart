@@ -6,6 +6,7 @@ import '../widgetBuilder/slider.dart';
 import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
 import '../widgetBuilder/countWidget.dart';
+import '../widgetBuilder/bottomButton.dart';
 
 double _sliderCurrentValue = 130.0;
 double _weightCurrentValue = 50.0;
@@ -27,109 +28,109 @@ class _InputPageState extends State<InputPage> {
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                    child: new DarkContainer(
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.male;
-                    });
-                  },
-                  color: selectedGender == Gender.male
-                      ? inactiveCardColor
-                      : activeCardColor,
-                  cardChild: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FontAwesomeWidget(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        icon: FontAwesomeIcons.mars,
-                        size: 60.0,
-                        textColor: Color(0xFF8D8E98),
-                        textSize: 18.0,
-                        iconText: 'MALE',
-                      ),
-                    ],
-                  ),
-                )),
-                Expanded(
-                    child: new DarkContainer(
-                  onPress: () {
-                    setState(() {
-                      selectedGender = Gender.female;
-                    });
-                  },
-                  color: selectedGender == Gender.female
-                      ? inactiveCardColor
-                      : activeCardColor,
-                  cardChild: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      FontAwesomeWidget(
-                        margin: EdgeInsets.only(bottom: 8.0),
-                        icon: FontAwesomeIcons.venus,
-                        size: 60.0,
-                        iconText: 'FEMALE',
-                        textColor: Color(0xFF8D8E98),
-                        textSize: 18.0,
-                      ),
-                    ],
-                  ),
-                ))
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: new DarkContainer(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: Row(
+                children: [
+                  Expanded(
+                      child: new DarkContainer(
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    color: selectedGender == Gender.male
+                        ? inactiveCardColor
+                        : activeCardColor,
                     cardChild: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'HEIGHT',
-                            style: LabelTextStyle,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.baseline,
-                            textBaseline: TextBaseline.alphabetic,
-                            children: [
-                              Text(_sliderCurrentValue.round().toString(),
-                                  style: NumberTextStyle),
-                              Text(
-                                'cm',
-                                style: LabelTextStyle,
-                              ),
-                            ],
-                          ),
-                          new CustomSlider(
-                            currentValue: _sliderCurrentValue,
-                            minValue: 120.0,
-                            maxValue: 220.0,
-                            onPress: (double value) {
-                              setState(() {
-                                _sliderCurrentValue = value;
-                              });
-                            },
-                          )
-                        ]),
-                    color: inactiveCardColor,
-                  ),
-                )
-                // change the DarkContainer width and height to have percentage sizes
-                // Solve this instead of using fixed sizes I had to use Expanded widgets
-              ],
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FontAwesomeWidget(
+                          margin: EdgeInsets.only(bottom: 8.0),
+                          icon: FontAwesomeIcons.mars,
+                          size: 60.0,
+                          textColor: Color(0xFF8D8E98),
+                          textSize: 18.0,
+                          iconText: 'MALE',
+                        ),
+                      ],
+                    ),
+                  )),
+                  Expanded(
+                      child: new DarkContainer(
+                    onPress: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    color: selectedGender == Gender.female
+                        ? inactiveCardColor
+                        : activeCardColor,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FontAwesomeWidget(
+                          margin: EdgeInsets.only(bottom: 8.0),
+                          icon: FontAwesomeIcons.venus,
+                          size: 60.0,
+                          iconText: 'FEMALE',
+                          textColor: Color(0xFF8D8E98),
+                          textSize: 18.0,
+                        ),
+                      ],
+                    ),
+                  ))
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: Row(
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: new DarkContainer(
+                      cardChild: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'HEIGHT',
+                              style: LabelTextStyle,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.baseline,
+                              textBaseline: TextBaseline.alphabetic,
+                              children: [
+                                Text(_sliderCurrentValue.round().toString(),
+                                    style: NumberTextStyle),
+                                Text(
+                                  'cm',
+                                  style: LabelTextStyle,
+                                ),
+                              ],
+                            ),
+                            new CustomSlider(
+                              currentValue: _sliderCurrentValue,
+                              minValue: 120.0,
+                              maxValue: 220.0,
+                              onPress: (double value) {
+                                setState(() {
+                                  _sliderCurrentValue = value;
+                                });
+                              },
+                            )
+                          ]),
+                      color: inactiveCardColor,
+                    ),
+                  )
+                  // change the DarkContainer width and height to have percentage sizes
+                  // Solve this instead of using fixed sizes I had to use Expanded widgets
+                ],
+              ),
+            ),
+            Row(
               children: [
                 Expanded(
                     child: new DarkContainer(
@@ -176,15 +177,19 @@ class _InputPageState extends State<InputPage> {
                 ))
               ],
             ),
-          ),
-          Container(
-              width: double.infinity,
-              height: bottomContainerHeight,
-              margin: EdgeInsets.only(top: 5.0),
-              decoration: BoxDecoration(
-                color: bottomContainerColor,
-              )),
-        ],
+            Container(
+                child: BottomButton(
+                  title: "CALCULATE",
+                  route: "results",
+                ),
+                width: double.infinity,
+                height: bottomContainerHeight,
+                margin: EdgeInsets.only(top: 5.0),
+                decoration: BoxDecoration(
+                  color: bottomContainerColor,
+                )),
+          ],
+        ),
       ),
     );
   }

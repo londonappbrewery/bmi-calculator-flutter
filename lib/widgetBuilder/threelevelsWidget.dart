@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class ThreeLevelWidget extends StatelessWidget {
-  ThreeLevelWidget({  
+  ThreeLevelWidget({
     @required this.labelText,
     @required this.numberText,
     @required this.customChild,
