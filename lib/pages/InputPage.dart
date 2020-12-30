@@ -7,6 +7,7 @@ import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
 import '../widgetBuilder/countWidget.dart';
 import 'ResultsPage.dart';
+import '../widgetBuilder/bottomButton.dart';
 
 double _sliderCurrentValue = 130.0;
 double _weightCurrentValue = 50.0;
@@ -130,65 +131,55 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                      child: new DarkContainer(
-                    color: inactiveCardColor,
-                    cardChild: new ThreeLevelWidget(
-                        // had to end up building the countWidget
-                        labelText: 'WEIGHT',
-                        numberText: _weightCurrentValue.round().toString(),
-                        customChild: new CountWidget(firstCallBack: () {
-                          if (_weightCurrentValue < 200) {
-                            print(_weightCurrentValue);
-                            setState(() {
-                              _weightCurrentValue++;
-                            });
-                          }
-                        }, secondCallBack: () {
-                          if (_weightCurrentValue > 0) {
-                            setState(() {
-                              _weightCurrentValue--;
-                            });
-                          }
-                        })),
-                  )),
-                  Expanded(
-                      child: new DarkContainer(
-                    color: inactiveCardColor,
-                    cardChild: new ThreeLevelWidget(
-                      labelText: 'AGE',
-                      numberText: _ageCurrentValue.round().toString(),
+            Row(
+              children: [
+                Expanded(
+                    child: new DarkContainer(
+                  color: inactiveCardColor,
+                  cardChild: new ThreeLevelWidget(
+                      // had to end up building the countWidget
+                      labelText: 'WEIGHT',
+                      numberText: _weightCurrentValue.round().toString(),
                       customChild: new CountWidget(firstCallBack: () {
-                        if (_ageCurrentValue < 100) {
+                        if (_weightCurrentValue < 200) {
+                          print(_weightCurrentValue);
                           setState(() {
-                            _ageCurrentValue++;
+                            _weightCurrentValue++;
                           });
                         }
                       }, secondCallBack: () {
-                        if (_ageCurrentValue > 0) {
+                        if (_weightCurrentValue > 0) {
                           setState(() {
-                            _ageCurrentValue--;
+                            _weightCurrentValue--;
                           });
                         }
-                      }),
-                    ),
-                  ))
-                ],
-              ),
+                      })),
+                )),
+                Expanded(
+                    child: new DarkContainer(
+                  color: inactiveCardColor,
+                  cardChild: new ThreeLevelWidget(
+                    labelText: 'AGE',
+                    numberText: _ageCurrentValue.round().toString(),
+                    customChild: new CountWidget(firstCallBack: () {
+                      if (_ageCurrentValue < 100) {
+                        setState(() {
+                          _ageCurrentValue++;
+                        });
+                      }
+                    }, secondCallBack: () {
+                      if (_ageCurrentValue > 0) {
+                        setState(() {
+                          _ageCurrentValue--;
+                        });
+                      }
+                    }),
+                  ),
+                ))
+              ],
             ),
             Container(
-                child: GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/results');
-                    },
-                    child: Center(
-                        child: Text(
-                      "CALCULATE",
-                      style: LargeButtonStyle,
-                    ))),
+                child: BottomButton(title: "CALCULATE"),
                 width: double.infinity,
                 height: bottomContainerHeight,
                 margin: EdgeInsets.only(top: 5.0),
