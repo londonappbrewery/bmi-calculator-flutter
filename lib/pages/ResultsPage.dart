@@ -37,7 +37,7 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
             Container(
-                child: BottomButton(title: "CALCULATE AGAIN"),
+                child: BottomButton(title: "RE-CALCULATE"),
                 width: double.infinity,
                 height: bottomContainerHeight,
                 margin: EdgeInsets.only(top: 5.0),
