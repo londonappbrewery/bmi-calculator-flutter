@@ -4,22 +4,18 @@ import '../constants.dart';
 class BottomButton extends StatelessWidget {
   const BottomButton({
     @required this.title,
-    this.route,
+    this.onClick,
     //add a route parameter and a checker with a default value for it.
     Key key,
   }) : super(key: key);
 
   final String title;
-  final String route;
+  final Function onClick;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          (route != null)
-              ? Navigator.pushNamed(context, "/$route")
-              : Navigator.pop(context);
-        },
+        onTap: onClick,
         child: Center(
             child: Text(
           title,

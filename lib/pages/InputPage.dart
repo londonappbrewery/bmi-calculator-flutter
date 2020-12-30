@@ -7,6 +7,8 @@ import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
 import '../widgetBuilder/countWidget.dart';
 import '../widgetBuilder/bottomButton.dart';
+import '../logic/bmiCalculator.dart' as BMICalculator;
+import '../logic/bmiResults.dart';
 
 double _sliderCurrentValue = 130.0;
 double _weightCurrentValue = 50.0;
@@ -180,7 +182,9 @@ class _InputPageState extends State<InputPage> {
             Container(
                 child: BottomButton(
                   title: "CALCULATE",
-                  route: "results",
+                  onClick: () {
+                    Navigator.pushNamed(context, '/results');
+                  },
                 ),
                 width: double.infinity,
                 height: bottomContainerHeight,
