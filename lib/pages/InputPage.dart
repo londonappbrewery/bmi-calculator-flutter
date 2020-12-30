@@ -6,7 +6,6 @@ import '../widgetBuilder/slider.dart';
 import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
 import '../widgetBuilder/countWidget.dart';
-import 'ResultsPage.dart';
 import '../widgetBuilder/bottomButton.dart';
 
 double _sliderCurrentValue = 130.0;
