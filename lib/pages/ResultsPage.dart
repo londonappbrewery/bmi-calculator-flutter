@@ -4,6 +4,16 @@ import '../widgetBuilder/darkContainer.dart';
 import '../widgetBuilder/bottomButton.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage({
+    this.weightLabel,
+    this.weight,
+    this.weightDescription,
+  });
+
+  String weightLabel;
+  String weight;
+  String weightDescription;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,15 +30,19 @@ class ResultsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "Weight label",
+                      (weightLabel != null)
+                          ? weightLabel
+                          : "No weight provided",
                       style: resultTextStyle,
                     ),
                     Text(
-                      "18.3",
+                      (weight != null) ? weight : "N/A",
                       style: BMITextStyle,
                     ),
                     Text(
-                      "Description",
+                      (weightDescription != null)
+                          ? weightDescription
+                          : "No weight provided",
                       style: BMIDescriptionTextStyle,
                     )
                   ],
@@ -37,7 +51,11 @@ class ResultsPage extends StatelessWidget {
               ),
             ),
             Container(
-                child: BottomButton(title: "RE-CALCULATE"),
+                child: BottomButton(
+                    title: "RE-CALCULATE",
+                    onClick: () {
+                      Navigator.pop(context);
+                    }),
                 width: double.infinity,
                 height: bottomContainerHeight,
                 margin: EdgeInsets.only(top: 5.0),

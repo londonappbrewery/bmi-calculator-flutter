@@ -11,7 +11,7 @@ import '../logic/bmiCalculator.dart' as BMICalculator;
 import '../logic/bmiResults.dart';
 
 double _sliderCurrentValue = 130.0;
-double _weightCurrentValue = 50.0;
+double _weightCurrentValue = 130.0;
 double _ageCurrentValue = 22.0;
 enum Gender { male, female }
 Gender selectedGender;
