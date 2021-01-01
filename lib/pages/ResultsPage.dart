@@ -42,7 +42,7 @@ class ResultsPage extends StatelessWidget {
                     Text(
                       (weightDescription != null)
                           ? weightDescription
-                          : "No weight provided",
+                          : "No weight description",
                       style: BMIDescriptionTextStyle,
                     )
                   ],
