@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/pages/ResultsPage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
 import '../widgetBuilder/darkContainer.dart';
@@ -7,9 +8,13 @@ import '../constants.dart';
 import '../widgetBuilder/threelevelsWidget.dart';
 import '../widgetBuilder/countWidget.dart';
 import '../widgetBuilder/bottomButton.dart';
+import '../logic/bmiCalculator.dart';
 
-double _sliderCurrentValue = 130.0;
-double _weightCurrentValue = 50.0;
+BMICalculator bmiCalculator =
+    BMICalculator(height: _heightCurrentValue, weight: _weightCurrentValue);
+
+double _heightCurrentValue = 184.0;
+double _weightCurrentValue = 75.0;
 double _ageCurrentValue = 22.0;
 enum Gender { male, female }
 Gender selectedGender;
@@ -103,7 +108,7 @@ class _InputPageState extends State<InputPage> {
                               crossAxisAlignment: CrossAxisAlignment.baseline,
                               textBaseline: TextBaseline.alphabetic,
                               children: [
-                                Text(_sliderCurrentValue.round().toString(),
+                                Text(_heightCurrentValue.round().toString(),
                                     style: NumberTextStyle),
                                 Text(
                                   'cm',
@@ -112,12 +117,14 @@ class _InputPageState extends State<InputPage> {
                               ],
                             ),
                             new CustomSlider(
-                              currentValue: _sliderCurrentValue,
+                              currentValue: _heightCurrentValue,
                               minValue: 120.0,
                               maxValue: 220.0,
                               onPress: (double value) {
                                 setState(() {
-                                  _sliderCurrentValue = value;
+                                  _heightCurrentValue = value;
+                                  bmiCalculator.height = _heightCurrentValue;
+                                  print(bmiCalculator.height);
                                 });
                               },
                             )
@@ -144,12 +151,16 @@ class _InputPageState extends State<InputPage> {
                           print(_weightCurrentValue);
                           setState(() {
                             _weightCurrentValue++;
+                            bmiCalculator.weight = _weightCurrentValue;
+                            print(bmiCalculator.weight);
                           });
                         }
                       }, secondCallBack: () {
                         if (_weightCurrentValue > 0) {
                           setState(() {
                             _weightCurrentValue--;
+                            bmiCalculator.weight = _weightCurrentValue;
+                            print(bmiCalculator.weight);
                           });
                         }
                       })),
@@ -180,7 +191,17 @@ class _InputPageState extends State<InputPage> {
             Container(
                 child: BottomButton(
                   title: "CALCULATE",
-                  route: "results",
+                  onClick: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ResultsPage(
+                                  weight: bmiCalculator.calculate(),
+                                  weightLabel: bmiCalculator.getBMILabel(),
+                                  weightDescription:
+                                      bmiCalculator.getBMIDescription(),
+                                )));
+                  },
                 ),
                 width: double.infinity,
                 height: bottomContainerHeight,
