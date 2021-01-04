@@ -10,9 +10,9 @@ class ResultsPage extends StatelessWidget {
     this.weightDescription,
   });
 
-  String weightLabel;
-  String weight;
-  String weightDescription;
+  final String weightLabel;
+  final String weight;
+  final String weightDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +28,7 @@ class ResultsPage extends StatelessWidget {
               child: new DarkContainer(
                 cardChild: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       (weightLabel != null)
@@ -43,6 +44,7 @@ class ResultsPage extends StatelessWidget {
                       (weightDescription != null)
                           ? weightDescription
                           : "No weight description",
+                      textAlign: TextAlign.center,
                       style: BMIDescriptionTextStyle,
                     )
                   ],
