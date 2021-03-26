@@ -1,9 +1,14 @@
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
-import 'bottom_button.dart';
+import '../Components/reusable_card.dart';
+import 'package:bmi_calculator/Components/bottom_button.dart';
 
 class ResultsPage extends StatelessWidget {
+  ResultsPage(@required this.bmiresult, this.resulttext, this.interpretation);
+
+  final String bmiresult;
+  final String resulttext;
+  final String interpretation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +21,8 @@ class ResultsPage extends StatelessWidget {
           children: <Widget>[
             Expanded(
               child: Container(
+                padding: EdgeInsets.all(30.0),
+                alignment: Alignment.bottomLeft,
                 child: Text(
                   'Your Result',
                   style: ktitlefont,
@@ -31,15 +38,15 @@ class ResultsPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      'normal',
+                      resulttext.toUpperCase(),
                       style: kresulttext,
                     ),
                     Text(
-                      '66',
+                      bmiresult,
                       style: kbmitext,
                     ),
                     Text(
-                      'you\'re a fat bitch.stop eating when you\'re bored and workout a bit.',
+                      interpretation,
                       textAlign: TextAlign.center,
                       style: kbodytextstyle,
                     ),
