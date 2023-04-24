@@ -7,7 +7,7 @@ class ResultsPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('BMI CALCULATOR'),
       ),
-      body: Text('HELLO'),
+      body: Text('Hi'),
     );
   }
 }
