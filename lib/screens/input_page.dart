@@ -4,6 +4,9 @@ import '../components/Reusable_Card.dart';
 import '../components/card_details.dart';
 import '../constants.dart';
 import 'result_page.dart';
+import 'package:bmi_calculator/bmi_brain.dart';
+import 'package:bmi_calculator/components/bottomButton.dart';
+import 'package:bmi_calculator/components/roundIconButton.dart';
 
 enum Gender {
   male,
@@ -209,46 +212,25 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomButton(
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ResultsPage()));
-            },
-            child: Container(
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              height: 85.0,
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  'CALCULATE',
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.w800,
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    bmiResult: calc.calculateBMI(),
+                    interpretation: calc.getInterpretation(),
+                    resultText: calc.getResult(),
                   ),
                 ),
-              ),
-            ),
+              );
+            },
+            buttonTitle: 'CALCULATE',
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({this.icon, this.onPressed});
-  final IconData icon;
-  final Function onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      onPressed: onPressed,
-      elevation: 5.0,
-      child: Icon(icon),
-      constraints: BoxConstraints.tightFor(width: 56, height: 56),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
